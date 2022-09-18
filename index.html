@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogger Dhamu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+        
+
+        body 
+        {
+            background-image: url(./images/PicsArt_12-26-05.46.51.jpg);
+            background-size: 100%;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        section 
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 50px;
+            margin: 0;
+            padding: 0;
+            box-sizing: 100%;
+            font-family: 'Poppins', sans-serif;
+
+        }
+
+        .container 
+        {
+            position: relative;
+            width: calc(100% -100px);
+            min-height: calc(100vh - 280px);
+            min-height: 300px;
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 15px 35px rgb(0, 0, 0, 0.5);
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px;
+        }
+
+        header 
+        {
+            position: absolute;
+            top: -40px;
+            right: 20px;
+            left: 20px;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgb(0, 0, 0, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 1px solid rgba(255, 255, 255, 0.5);
+
+
+        }
+
+        header .logo 
+        {
+            color: #8d1111;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 3em;
+
+        }
+
+        header ul 
+        {
+            display: flex;
+        }
+
+        header ul li 
+        {
+            list-style: none;
+            margin: 0 10px;
+        }
+
+        header ul li a 
+        {
+            text-decoration: none;
+            font-weight: 500;
+            color: #8d1111;
+            padding: 8px 15px;
+            border-radius: 25px;
+        }
+
+        header ul li a:hover,
+        header ul li a.active 
+        {
+            background: #ffffff;
+            box-shadow: 0 5px 10px rgb(0, 0, 0, 0.1);
+
+        }
+
+        .content {
+            color: #8d1111;
+            transform: translate(-100px);
+            max-width: 700px;
+            box-shadow: 0 15px 30px rgb(0, 0, 0, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgb(255, 255, 255, 0.25);
+            border-top: 1px solid rgb(255, 255, 255, 0.5);
+            border-left: 1px solid rgb(255, 255, 255, 0.5);
+            padding: 10px;
+            padding-left: 10px;
+
+        }
+
+        .content h2 {
+            color: #8d1111;
+            font-size: 3em;
+        }
+
+        .content h2 {
+            font-size: 1.2em;
+
+        }
+
+        .content a {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #ffffff;
+            color: #8d1111;
+            margin-top: 20px;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: 500;
+            text-decoration: none;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .imgbox img {
+            max-width: 400px;
+            animation: animate 6s linear infinite;
+            margin-top: -42px;
+        }
+
+        @keyframes animate {
+
+            0%,100% 
+            {
+                transform: translateY(50px);
+
+            }
+
+            50% 
+            {
+                transform: translateY(100px);
+            }
+        }
+
+        .fa {
+            
+            right: -25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .fa li {
+            list-style: none;
+        }
+
+        .fa li a {
+            font-size: 50px;
+            color: black;
+            text-decoration: none;
+            width: 70px;
+            height: 70px;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            margin: 5px 0;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .fa li a {
+            transform: scale(0.6);
+            transition: 0.5s;
+
+        }
+
+        .fa li:hover a {
+             transform: scale(0.7) rotate(360deg);
+        }
+
+        .copyright {
+            position: absolute;
+            bottom: 30px;
+            left: 50px;
+            color: #8d1111; 
+        }
+
+        @media (max-width: 1200px) 
+        {
+            .container 
+            {
+                position: relative;
+                width: calc(100% -20px);
+            }
+        }
+
+        @media (max-width: 995px) {
+            section {
+                padding: 50px 20px 10px;
+            }
+
+            .container {
+                flex-direction: column;
+                height: auto;
+                padding: 70px 40px;
+                padding-left: 10px;
+
+            }
+
+            .container content {
+                transform: translateX(0px);
+                max-width: 100%;
+                padding: 30px;
+                margin-top: -40px;
+            }
+
+            header {
+                position: relative;
+                flex-direction: column;
+                width: 300px;
+                top: -20px;
+                padding: 20px;
+
+            }
+
+            header ul {
+                margin-top: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+                right: 0;
+                left: 0;
+            }
+
+            header ul li {
+                margin: 2px;
+
+            }
+
+            header ul li a {
+                display: inline-block;
+
+            }
+
+            .imgbox {
+                margin-bottom: 50px;
+
+            }
+
+            .content a {
+                
+                font-size: 1em;
+                padding: 10px 20px;
+
+            }
+
+            @keyframes animate {
+
+                0%, 100% {
+                    transform: translateY(-20px);
+
+                }
+
+                50% {
+                    transform: translateY(20px);
+                }
+            }
+
+            .fa {
+                position: relative;
+                flex-direction: row;
+                left: 0;
+
+            }
+            .fa li a{
+                margin: 0 10px;
+
+            }
+            .copyright {
+            position: relative;
+            bottom: initial;
+            left: 20px;
+            width: 100%;
+            color: #8d1111;
+            text-align: center;
+            margin-top: 20px;
+            
+        }
+        @media (max-width: 600px){
+
+            .content{
+                
+                margin-left: 20%;
+            }
+            .content h2 {
+            font-size: 1em;
+            color: #8d1111;
+            }
+            .content p {
+            font-size: 1em;
+            color: #8d1111;
+            }
+            .imgbox img{
+                margin-left: 5%;
+                margin-bottom: -20%;
+                max-width: 300px;
+                max-height: 300px;
+            }
+        }
+        
+        
+       
+
+    }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <header>
+                <a class="logo">AMAL DEV ANILKUMAR</a>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="http://127.0.0.1:5501/mygames.html">My Games</a></li>
+                    <li><a href="http://127.0.0.1:5501/currentgoal.html">Current Goal</a></li>
+                </ul>
+            </header>
+            <div class="content">
+                <h2>Hey !</h2>
+                <p>I'm Amal Dev Anilkumar & Welcome to my personal blog.
+                    I'll be sharing my personal facts, interests, quotes, life experience, favourites, current status,
+                    hot topics and other interesting stuff here.
+                    I hope you'll enjoy :)
+                </p>
+                <p>click here to know more !</p>
+                <a href="http://127.0.0.1:5501/Readmore.html">Read More</a>
+            </div>
+            <div class="imgbox">
+                <img src="images/amalvanilla.png" max-width="100" height="500">
+            </div>
+            <ul class="fa">
+                <li> <a href="https://www.instagram.com/amal_dv_/" class="fa fa-instagram"></a></li>
+                <li> <a href="https://www.youtube.com/vloggerdhamu/" class="fa fa-youtube"></a></li>
+                <li> <a href="https://www.twitter.com/amal_dv_/" class="fa fa-twitter"></a></li>
+            </ul>
+            <p class="copyright">©2021 Amal Dev Anilkumar. All Right Reserved.</p>
+        </div>
+
+    </section>
+</body>
+</html>
