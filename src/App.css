@@ -1,0 +1,894 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
+/* General body and page setup */
+body {
+  background: rgb(238, 174, 202);
+  background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+  background-size: 100%;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 0;
+  /* Added for reset */
+  font-family: 'Poppins', sans-serif;
+  /* Moved from section for global application */
+  box-sizing: border-box;
+  /* Typically good to set globally or on specific elements */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  /* Applying box-sizing more broadly */
+  box-sizing: inherit;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 50px;
+  /* Reinstated section padding for overall spacing */
+  /* margin, padding:0 removed as body has margin:0 and box-sizing is handled */
+}
+
+.container {
+  position: relative;
+  width: calc(100% - 100px);
+  /* Corrected space */
+  min-height: calc(100vh - 280px);
+  /* Consider if this calculation is always ideal */
+  min-height: 300px;
+  /* This overrides the previous min-height if smaller */
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  /* Corrected 'rgb(0,0,0,0.5)' to rgba */
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+}
+
+/* Header Styles */
+header {
+  position: absolute;
+  top: -40px;
+  right: 20px;
+  left: 20px;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  /* Corrected 'rgb(0,0,0,0.2)' to rgba */
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  z-index: 10;
+  /* Ensure header is above other container content if overlap occurs */
+}
+
+header .logo {
+  color: #8d1111;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 2.5em;
+  /* Slightly reduced for balance, adjust as needed */
+}
+
+header ul {
+  display: flex;
+  padding: 0;
+  /* Added for reset */
+  margin: 0;
+  /* Added for reset */
+}
+
+header ul li {
+  list-style: none;
+  margin: 0 10px;
+}
+
+header ul li a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #8d1111;
+  padding: 8px 15px;
+  border-radius: 25px;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  /* Smooth transition */
+}
+
+header ul li a:hover,
+header ul li a.active {
+  background: #ffffff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  /* Corrected 'rgb(0,0,0,0.1)' to rgba */
+}
+
+/* Content Styles */
+/* ACCESSIBILITY NOTE: Ensure text color #8d1111 has sufficient contrast against the semi-transparent background */
+.content {
+  color: #8d1111;
+  transform: translateX(-20px);
+  /* Consider if this shift is needed, can affect alignment */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  /* Corrected 'rgb(0,0,0,0.1)' to rgba */
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 25px;
+  /* Adjusted padding */
+  max-width: 600px;
+  /* Constrain content width for better readability */
+}
+
+.content h2 {
+  color: #8d1111;
+  /* Already set on .content, but specific for overrides if needed */
+  font-size: 2em;
+  /* Adjusted from 1.2em for better hierarchy, was previously 3em then 1.2em */
+  margin-top: 0;
+  /* Good practice for heading in a container */
+}
+
+/* Removed redundant .content h2 { font-size: 3em } */
+
+.content p {
+  line-height: 1.6;
+  /* Improved readability */
+}
+
+.content a {
+  display: inline-block;
+  padding: 15px 30px;
+  background: #ffffff;
+  color: #8d1111;
+  margin-top: 20px;
+  border-radius: 30px;
+  font-size: 1.2em;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Smooth transition */
+}
+
+.content a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.imgbox img {
+  max-width: 100%;
+  /* Make image responsive within its container */
+  height: auto;
+  /* Maintain aspect ratio */
+  /* max-width: 1200px from original was very large, now controlled by container/layout */
+  animation: animateImage 6s linear infinite;
+  /* Renamed animation for clarity */
+  margin-top: -42px;
+  /* This might need adjustment depending on desired overlap */
+}
+
+@keyframes animateImage {
+
+  /* Renamed keyframes */
+  0%,
+  100% {
+    transform: translateY(50px);
+  }
+
+  50% {
+    transform: translateY(100px);
+  }
+}
+
+/* Social Icons Styles */
+.social-icons {
+  /* Renamed from .fa */
+  /* right: -25px; Removed as it might be tricky with flex, adjust positioning as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  list-style: none;
+  /* Moved from .social-icons li */
+  padding: 0;
+  /* Added for reset */
+  margin: 0 20px;
+  /* Added some margin to space it from other elements */
+}
+
+.social-icons li a {
+  font-size: 24px;
+  /* Adjusted for better scale with container */
+  color: black;
+  text-decoration: none;
+  width: 60px;
+  /* Slightly adjusted */
+  height: 60px;
+  /* Slightly adjusted */
+  background: #ffffff;
+  display: flex;
+  /* Kept for icon centering */
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: 8px 0;
+  /* Adjusted margin */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  transform: scale(0.8);
+  /* Adjusted initial scale */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  /* Smoother transition, added bgcolor */
+}
+
+.social-icons li:hover a {
+  transform: scale(0.9) rotate(360deg);
+  /* Adjusted scale */
+  background-color: #f0f0f0;
+  /* Example hover background */
+}
+
+/* Copyright Styles */
+.copyright {
+  position: absolute;
+  bottom: 0px;
+  left: 50px;
+  color: #8d1111;
+  font-size: 0.9em;
+}
+
+/* Accessibility: Basic Focus Indicator */
+a:focus {
+  outline: 2px solid #005fcc;
+  /* Example focus color, choose one that fits theme */
+  outline-offset: 2px;
+}
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  section {
+    padding: 50px 20px 20px;
+    /* Adjusted bottom padding */
+  }
+
+  .container {
+    width: calc(100% - 40px);
+    /* Adjusted width for smaller screens */
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+    /* Uniform padding for smaller screens */
+    /* padding-left: 10px; (Removed, covered by uniform padding) */
+  }
+
+  /* Ensure header is handled correctly in column layout */
+  header {
+    position: relative;
+    /* Changed from absolute */
+    flex-direction: column;
+    width: 100%;
+    /* Take full width of the container */
+    top: 0;
+    /* Reset top */
+    right: 0;
+    /* Reset right */
+    left: 0;
+    /* Reset left */
+    padding: 20px;
+    margin-bottom: 20px;
+    /* Space below header */
+  }
+
+  header .logo {
+    font-size: 2em;
+    /* Adjust logo size for mobile */
+    margin-bottom: 10px;
+    /* Space below logo if nav wraps */
+    text-align: center;
+    /* Center logo if nav wraps */
+  }
+
+  header ul {
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  header ul li {
+    margin: 5px;
+    /* Adjusted margin for wrapped items */
+  }
+
+  header ul li a {
+    display: inline-block;
+    /* Already default for a, but ensures consistency */
+    padding: 6px 12px;
+    /* Adjust padding for smaller nav items */
+  }
+
+  .content {
+    /* Corrected selector: .container .content -> .content as it's direct child */
+    transform: translateX(0px);
+    max-width: 100%;
+    padding: 20px;
+    /* Adjusted padding */
+    margin-top: 0;
+    /* Reset margin-top, header provides spacing */
+    /* margin-left: 20%; (Removed, usually want content centered or full-width on mobile) */
+    order: 2;
+    /* Example: Define order if needed with flex-direction: column */
+  }
+
+  .content h2 {
+    font-size: 1.8em;
+    /* Adjusted for mobile */
+    /* color: #8d1111; (Inherited) */
+  }
+
+  .content p {
+    font-size: 0.95em;
+    /* Adjusted for mobile */
+    /* color: #8d1111; (Inherited) */
+  }
+
+  .content a {
+    font-size: 1em;
+    padding: 10px 20px;
+  }
+
+  .imgbox {
+    margin-bottom: 30px;
+    /* Space below image */
+    width: 100%;
+    /* Allow image box to take width */
+    display: flex;
+    /* For centering image if needed */
+    justify-content: center;
+    /* For centering image if needed */
+    order: 1;
+    /* Example: Define order */
+  }
+
+  .imgbox img {
+    /* margin-left: 5%; (Removed for general centering or full width) */
+    /* margin-bottom: -20%; (Adjust if specific overlap is still desired) */
+    margin-top: 0;
+    /* Reset margin-top for normal flow */
+    max-width: 80%;
+    /* Example: Control image size on mobile, can be 100% */
+    max-height: 250px;
+    /* Adjusted from 300px */
+
+  }
+
+  @keyframes animateImage {
+
+    /* Adjusted animation for mobile */
+    0%,
+    100% {
+      transform: translateY(-10px);
+    }
+
+    50% {
+      transform: translateY(10px);
+    }
+  }
+
+  .social-icons {
+    /* Renamed from .fa */
+    position: relative;
+    /* Keep relative if needed for other adjustments */
+    flex-direction: row;
+    /* Horizontal icons on mobile */
+    left: 0;
+    /* Reset left */
+    margin-top: 20px;
+    /* Space above social icons */
+    margin-bottom: 20px;
+    /* Space below social icons */
+    order: 3;
+    /* Example: Define order */
+  }
+
+  .social-icons li a {
+    margin: 0 10px;
+    /* Horizontal margin */
+    font-size: 20px;
+    /* Adjust icon font size for mobile */
+    width: 50px;
+    /* Adjust width for mobile */
+    height: 50px;
+    /* Adjust height for mobile */
+  }
+
+  .copyright {
+    position: relative;
+    /* Changed from absolute */
+    bottom: auto;
+    /* Reset */
+    left: auto;
+    /* Reset */
+    width: 100%;
+    /* color: #8d1111; (Inherited) */
+    text-align: center;
+    margin-top: 20px;
+    /* Space above copyright */
+    padding-bottom: 20px;
+    /* Ensure some space at the very bottom */
+    font-size: 0.8em;
+    /* Adjust font size */
+    order: 4;
+    /* Example: Define order */
+  }
+
+  .logo:hover {
+    color: #ffffff;
+  }
+  
+  .top-button:hover {
+    background: #8d1111;
+    color: #ffffff;
+  }
+  /* Dark mode styles */
+  .dark body,
+  .dark .container,
+  .dark header,
+  .dark .content,
+  .dark .social-icons li a,
+  .dark .copyright {
+    background: #121212 !important;
+    color: #f0f0f0 !important;
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .dark header .logo,
+  .dark .content h2,
+  .dark .content p,
+  .dark .copyright {
+    color: #f0f0f0 !important;
+  }
+
+  /* Back to top */
+  .top-button {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    padding: 12px 20px;
+    font-size: 1em;
+    background: #ffffff;
+    color: #8d1111;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 1000;
+  }
+
+  /* Dark mode toggle */
+  .darkmode-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ffffff;
+    color: #8d1111;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2em;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 1000;
+  }
+
+  .darkmode-toggle:hover {
+    background: #8d1111;
+    color: #ffffff;
+  }
+}
+.intro-section,
+.achievements-section,
+.site-footer {
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 50px auto;
+  max-width: 900px;
+  color: #8d1111;
+  text-align: center;
+}
+
+.intro-section h1,
+.achievements-section h2,
+.site-footer h3 {
+  font-size: 2em;
+  margin-bottom: 15px;
+}
+
+.achievements-section ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.site-footer a {
+  color: #8d1111;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.site-footer a:hover {
+  color: #ffffff;
+}
+
+.footer-socials {
+  margin: 20px 0;
+}
+
+.footer-socials a {
+  margin: 0 10px;
+  font-size: 1.5em;
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-socials a:hover {
+  transform: scale(1.2);
+  color: #ffffff;
+}
+
+.footer-tagline {
+  font-style: italic;
+  margin-top: 15px;
+  font-size: 0.95em;
+}
+
+.footer-copy {
+  font-size: 0.85em;
+  margin-top: 10px;
+}
+
+.projects-summary {
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 50px auto;
+  max-width: 900px;
+  color: #8d1111;
+  text-align: center;
+}
+
+.projects-summary h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+/* Total big count */
+.projects-total {
+  margin-bottom: 30px;
+}
+.projects-total span {
+  font-size: 3em;
+  font-weight: bold;
+  display: inline-block;
+}
+
+/* Row of small cards */
+.projects-stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* Each smaller card */
+.projects-stat-card {
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(8px);
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  padding: 20px 40px;
+  min-width: 150px;
+  transition: transform 0.3s;
+}
+.projects-stat-card:hover {
+  transform: scale(1.03);
+}
+
+.projects-stat-card h3 {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+}
+
+.projects-stat-card span {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+/* Small devices */
+@media (max-width: 768px) {
+  .projects-total span {
+    font-size: 2em;
+  }
+  .projects-stat-card {
+    padding: 15px 30px;
+  }
+  .projects-stat-card h3 {
+    font-size: 1.1em;
+  }
+  .projects-stat-card span {
+    font-size: 2em;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 480px) {
+  .projects-total span {
+    font-size: 2.5em;
+  }
+  .projects-stat-card {
+    padding: 12px 20px;
+    min-width: 120px;
+  }
+  .projects-stat-card span {
+    font-size: 1.8em;
+  }
+}
+
+
+.counter-card {
+  background: rgba(255,255,255,0.6);
+  border-radius: 15px;
+  padding: 20px 40px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  font-size: 2em;
+  font-weight: bold;
+  color: #8d1111;
+  transition: transform 0.3s ease;
+}
+
+.counter-card:hover {
+  transform: scale(1.01);
+}
+
+.current-status {
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 50px auto;
+  max-width: 900px;
+  color: #8d1111;
+  text-align: center;
+}
+
+.current-status h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+
+/*===================== corousel setup================================ */
+.employer-carousel {
+  max-width: 900px;
+  margin: 60px auto;
+  text-align: center;
+  color: #8d1111;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.employer-carousel h2 {
+  font-size: 2em;
+  margin-bottom: 25px;
+}
+
+/* Keen slider slides */
+.keen-slider__slide.employer-slide-3d {
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.keen-slider__slide:nth-child(1) {
+  transform: scale(0.7) rotateY(20deg);
+  opacity: 0.5;
+}
+.keen-slider__slide:nth-child(2) {
+  transform: scale(0.9) rotateY(10deg);
+  opacity: 1;
+}
+
+.employer-card {
+  width: 220px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  cursor: grab;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.employer-card img {
+  max-width: 80px;
+  margin-bottom: 10px;
+}
+.employer-card h3 {
+  margin: 8px 0 4px;
+  font-size: 1.1em;
+}
+.employer-card p {
+  margin: 0;
+  font-size: 0.9em;
+}
+
+/*add color per card*/
+
+/* Default style, fallback color if more slides are added */
+.emp-description {
+  font-size: 0.9em;
+  margin: 5px 0;
+}
+
+/* First card description - red */
+.keen-slider__slide:nth-child(1) .emp-description {
+  color: #d60000;
+}
+
+/* Second card description - green */
+.keen-slider__slide:nth-child(2) .emp-description {
+  color: #00bc26;
+}
+
+
+.read-more-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: #8d1111;
+  color: #fff;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.85em;
+  transition: background 0.3s;
+}
+.read-more-btn:hover {
+  background: #6c0f0f;
+}
+
+.arrows {
+  margin-top: 20px;
+}
+.arrow-button {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(8px);
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  margin: 0 10px;
+  font-size: 1.8em;
+  color: #8d1111;
+  cursor: pointer;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+  transition: transform 0.3s, background 0.3s;
+}
+.arrow-button:hover {
+  transform: translateY(-3px);
+  background: #8d1111;
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .employer-carousel {
+    max-width: 90%;
+  }
+  .employer-card {
+    width: 90%;
+    padding: 15px;
+  }
+}
+/* ========== GLOBAL DARK MODE SUPPORT ========== */
+.dark {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+.dark a {
+  color: #f0f0f0;
+}
+
+.dark .container,
+.dark .intro-section,
+.dark .projects-summary,
+.dark .employer-carousel,
+.dark .achievements-section,
+.dark .site-footer,
+.dark .counter-card,
+.dark .current-status {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f0f0f0;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark .read-more-btn,
+.dark .arrow-button,
+.dark .top-button,
+.dark .darkmode-toggle {
+  background: rgba(255,255,255,0.2);
+  color: #f0f0f0;
+}
+
+.dark .read-more-btn:hover,
+.dark .arrow-button:hover,
+.dark .top-button:hover,
+.dark .darkmode-toggle:hover {
+  background: #f0f0f0;
+  color: #121212;
+}
+
+/* ========== FIX DARKMODE BUTTON POSITION ALWAYS ========== */
+.darkmode-toggle {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: rgba(255,255,255,0.6);
+  color: #8d1111;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.2em;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  z-index: 1000;
+  transition: background 0.3s, color 0.3s, transform 0.3s;
+}
+
+.darkmode-toggle:hover {
+  background: #8d1111;
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+/* ========== TOP BUTTON ABOVE DARK MODE TOGGLE ON LEFT ========== */
+.top-button {
+  position: fixed;
+  bottom: 20px; /* stays above dark mode toggle */
+  left: 20px;   /* moved from right to left */
+  padding: 12px 20px;
+  font-size: 1em;
+  background: rgba(255,255,255,0.6);
+  color: #8d1111;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  z-index: 1000;
+  transition: background 0.3s, color 0.3s, transform 0.3s;
+}
+
+.top-button:hover {
+  background: #8d1111;
+  color: #ffffff;
+  transform: translateY(-3px);
+}
