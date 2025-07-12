@@ -1,21 +1,29 @@
-# My Portfolio
+# 🚀 Amal Dev Anilkumar Portfolio
 
-Welcome to my personal portfolio site! 🚀  
-Built to showcase my skills, professional journey, and the projects I've delivered.
+Welcome to my personal portfolio website!  
+This site showcases my skills, projects, and employment status, built with React and styled with custom glassmorphism UI.
 
----
+## 🌟 Features
+- Interactive carousel of employment history
+- Smooth scroll sections: Introduction, Projects, Skills & Achievements, About
+- Dark mode toggle
+- Responsive glassmorphic design
+- Animated project counters
 
-## ✨ Features
+## 💻 Tech Stack
+- React.js
+- Keen Slider
+- CountUp.js
+- CSS Glassmorphism
+- Hosted on GitHub Pages (or your choice)
 
-- 🎨 Glassmorphism & dark mode toggle
-- 🚀 Smooth scrolling, animated counters
-- 🔥 Responsive design
-- 🌐 Employment carousel & projects delivered stats
+## 📷 Preview
+![Portfolio Preview](./preview.png) <!-- replace with actual screenshot path -->
 
----
-
-## 🚀 Tech Stack
-
-- **Frontend:** React, CSS (Glassmorphism, Animations)
-- **Slider:** Keen Slider
-- **Animations:** CountUp, Intersection Observer
+## 🚀 Getting Started
+Clone the repository and install dependencies:
+```bash
+git clone https://github.com/theframer/Portfolio.git
+cd Portfolio
+npm install
+npm start
