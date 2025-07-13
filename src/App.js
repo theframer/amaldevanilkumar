@@ -6,19 +6,94 @@ import CountUp from 'react-countup';
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { useInView } from 'react-intersection-observer';
+import ContactForm from './ContactForm';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [showTopButton, setShowTopButton] = useState(false);
+  const [showContact, setShowContact] = useState(false); // new popup state
   const { ref: projectsRef, inView: projectsInView } = useInView({ triggerOnce: false });
 
   useEffect(() => {
-    const handleScroll = () => {
-      setShowTopButton(window.pageYOffset > 300);
-    };
+    const handleScroll = () => setShowTopButton(window.pageYOffset > 300);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowContact(true), 10000); // open after 10s
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => setShowTopButton(window.pageYOffset > 300);
+    window.addEventListener('scroll', handleScroll);
+
+    const svgNS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(svgNS, "svg");
+    svg.classList.add("trail-svg");
+    svg.setAttribute("width", "100%");
+    svg.setAttribute("height", "100%");
+    svg.style.position = "fixed";
+    svg.style.top = "0";
+    svg.style.left = "0";
+    svg.style.pointerEvents = "none";
+    svg.style.zIndex = "0";
+    document.body.appendChild(svg);
+
+    let points = [];
+    let lastMove = Date.now();
+
+    const addPoint = (x, y) => {
+      points.push({ x, y });
+      if (points.length > 30) points.shift();
+      lastMove = Date.now();
+    };
+
+    const mouseMove = (e) => addPoint(e.clientX, e.clientY);
+    const touchMove = (e) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        addPoint(touch.clientX, touch.clientY);
+      }
+    };
+
+    window.addEventListener("mousemove", mouseMove);
+    window.addEventListener("touchmove", touchMove, { passive: true });
+
+    const animate = () => {
+      const now = Date.now();
+      if (now - lastMove > 100 && points.length > 1) {
+        points.shift();
+      }
+
+      svg.innerHTML = "";
+      const strokeWidth = window.innerWidth < 600 ? 2 : 4;
+      for (let i = 1; i < points.length; i++) {
+        const line = document.createElementNS(svgNS, "line");
+        line.setAttribute("x1", points[i - 1].x);
+        line.setAttribute("y1", points[i - 1].y);
+        line.setAttribute("x2", points[i].x);
+        line.setAttribute("y2", points[i].y);
+
+        const fade = i / points.length;
+        line.setAttribute("stroke", darkMode ? "white" : "#8d1111");
+        line.setAttribute("stroke-opacity", fade);
+        line.setAttribute("stroke-width", strokeWidth);
+        line.setAttribute("stroke-linecap", "round");
+        svg.appendChild(line);
+      }
+      requestAnimationFrame(animate);
+    };
+    animate();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("mousemove", mouseMove);
+      window.removeEventListener("touchmove", touchMove);
+      document.body.removeChild(svg);
+    };
+  }, [darkMode]);
 
   const employers = [
     { name: "OHO Solutions", role: "Senior Zoho Developer", description: "2023-2025", logo: "https://www.ohosolutions.com/logo%20bottom-1.png", link: "https://www.ohosolutions.com/#clients"},
@@ -29,18 +104,10 @@ function App() {
     initial: employers.length - 1,
     loop: false,
     mode: "free-snap",
-    slides: {
-      origin: "center",
-      perView: 3,
-      spacing: 30
-    },
+    slides: { origin: "center", perView: 3, spacing: 30 },
     breakpoints: {
-      "(max-width: 1200px)": {
-        slides: { perView: 2, spacing: 20 }
-      },
-      "(max-width: 768px)": {
-        slides: { perView: 1, spacing: 15 }
-      }
+      "(max-width: 1200px)": { slides: { perView: 2, spacing: 20 }},
+      "(max-width: 768px)": { slides: { perView: 1, spacing: 15 }}
     }
   });
 
@@ -63,7 +130,9 @@ function App() {
             <p> I'm Amal Dev Anilkumar 👋</p>
             <p> Welcome to my personal space.</p>
             <p>Know more about me and keep scrolling. Hope you enjoy exploring as much as I enjoy building it. 😊</p>
-            <a href="/Deluge%20Functions.html" target="_blank" rel="noopener noreferrer">Read More</a>
+            <button onClick={() => setShowContact(true)} className="contact-me-btn">
+  Contact Me
+</button>
           </div>
 
           <div className="imgbox">
@@ -89,26 +158,25 @@ function App() {
       </div>
 
       <div className="projects-summary" id="projects" ref={projectsRef}>
-  <h2>Projects Delivered</h2>
-  <div className="projects-total">
-    {projectsInView && (
-      <>
-        <span><CountUp end={50} duration={3} /></span><span>+</span>
-      </>
-    )}
-  </div>
-  <div className="projects-stats-row">
-    <div className="projects-stat-card">
-      <h3>International</h3>
-      {projectsInView && <span><CountUp end={6} duration={3} />+</span>}
-    </div>
-    <div className="projects-stat-card">
-      <h3>Domestic</h3>
-      {projectsInView && <span><CountUp end={44} duration={3} />+</span>}
-    </div>
-  </div>
-</div>
-
+        <h2>Projects Delivered</h2>
+        <div className="projects-total">
+          {projectsInView && (
+            <>
+              <span><CountUp end={50} duration={3} /></span><span>+</span>
+            </>
+          )}
+        </div>
+        <div className="projects-stats-row">
+          <div className="projects-stat-card">
+            <h3>International</h3>
+            {projectsInView && <span><CountUp end={6} duration={3} />+</span>}
+          </div>
+          <div className="projects-stat-card">
+            <h3>Domestic</h3>
+            {projectsInView && <span><CountUp end={44} duration={3} />+</span>}
+          </div>
+        </div>
+      </div>
 
       <div className="employer-carousel">
         <h2>Employment Status</h2>
@@ -122,14 +190,7 @@ function App() {
                 {emp.description && (
                   <p className="emp-description">{emp.description}</p>
                 )}
-                <a
-                  href={emp.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="read-more-btn"
-                >
-                  Read More
-                </a>
+                <a href={emp.link} target="_blank" rel="noopener noreferrer" className="read-more-btn">Read More</a>
               </div>
             </div>
           ))}
@@ -155,12 +216,10 @@ function App() {
       <footer className="site-footer" id='about'>
         <div className="footer-content">
           <h3>Amal Dev Anilkumar</h3>
-          <p>Zoho Developer & Web Developer</p>
-          <p className="footer-contact">
-            📍 Alappuzha, Kerala, India &nbsp;|&nbsp;
-            📞 <a href="tel:+919074617161">+91 90746 17161</a> &nbsp;|&nbsp;
-            ✉️ <a href="mailto:amaldevanil129@gmail.com">amaldevanil129@gmail.com</a>
-          </p>
+          <p>Zoho Developer | Web Developer</p>
+          <p className="footer-contact">Alappuzha, Kerala, India</p>
+          <p><a href="tel:+919074617161">+91 90746 17161</a></p>
+          <p><a href="mailto:amaldevanil129@gmail.com">amaldevanil129@gmail.com</a></p>
           <div className="footer-socials">
             <a href="https://www.instagram.com/amal_dv_/" aria-label="Instagram"><FaInstagram /></a>
             <a href="https://www.linkedin.com/in/amal-dev-anilkumar-295071216/" aria-label="LinkedIn"><FaLinkedin /></a>
@@ -170,6 +229,8 @@ function App() {
           <p className="footer-copy">© 2025 Amal Dev Anilkumar. All rights reserved.</p>
         </div>
       </footer>
+
+      {showContact && <ContactForm onClose={() => setShowContact(false)} />}
 
       {showTopButton && (
         <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="top-button">
