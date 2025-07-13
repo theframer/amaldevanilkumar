@@ -20,7 +20,7 @@ function CodePopupForm({ onClose }) {
 
   return (
     <div className="code-popup-card">
-      <button className="code-close-btn" onClick={onClose}>×</button>
+      <button className="code-close-btn" onClick={onClose}></button>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
