@@ -7,11 +7,14 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { useInView } from 'react-intersection-observer';
 import ContactForm from './ContactForm';
+import CodePopupForm from './CodePopupForm'; // ✅ ADDED THIS
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [showTopButton, setShowTopButton] = useState(false);
-  const [showContact, setShowContact] = useState(false); // new popup state
+  const [showContact, setShowContact] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [showCodePopup, setShowCodePopup] = useState(false);
   const { ref: projectsRef, inView: projectsInView } = useInView({ triggerOnce: false });
 
   useEffect(() => {
@@ -21,14 +24,11 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowContact(true), 10000); // open after 10s
+    const timer = setTimeout(() => setShowContact(true), 10000);
     return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => setShowTopButton(window.pageYOffset > 300);
-    window.addEventListener('scroll', handleScroll);
-
     const svgNS = "http://www.w3.org/2000/svg";
     const svg = document.createElementNS(svgNS, "svg");
     svg.classList.add("trail-svg");
@@ -63,9 +63,7 @@ function App() {
 
     const animate = () => {
       const now = Date.now();
-      if (now - lastMove > 100 && points.length > 1) {
-        points.shift();
-      }
+      if (now - lastMove > 100 && points.length > 1) points.shift();
 
       svg.innerHTML = "";
       const strokeWidth = window.innerWidth < 600 ? 2 : 4;
@@ -88,7 +86,6 @@ function App() {
     animate();
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener("mousemove", mouseMove);
       window.removeEventListener("touchmove", touchMove);
       document.body.removeChild(svg);
@@ -97,7 +94,7 @@ function App() {
 
   const employers = [
     { name: "OHO Solutions", role: "Senior Zoho Developer", description: "2023-2025", logo: "https://www.ohosolutions.com/logo%20bottom-1.png", link: "https://www.ohosolutions.com/#clients"},
-    { name: "Agent Time", role: "Team Lead: Zoho and Web Developent", description: "Active", logo: "https://agenttime.au/wp-content/uploads/2025/03/Invert-AT-Logo.png", link: "https://agenttime.au/"}
+    { name: "Agent Time", role: "Team Lead: Web & Zoho Development", description: "Active", logo: "https://agenttime.au/wp-content/uploads/2025/03/Invert-AT-Logo.png", link: "https://agenttime.au/"}
   ];
 
   const [sliderRef, instanceRef] = useKeenSlider({
@@ -131,8 +128,8 @@ function App() {
             <p> Welcome to my personal space.</p>
             <p>Know more about me and keep scrolling. Hope you enjoy exploring as much as I enjoy building it. 😊</p>
             <button onClick={() => setShowContact(true)} className="contact-me-btn">
-  Contact Me
-</button>
+              Contact Me
+            </button>
           </div>
 
           <div className="imgbox">
@@ -155,6 +152,15 @@ function App() {
           I bring strong communication, consultation, and problem-solving skills, applying both Agile and Waterfall methodologies to ensure projects meet goals and deadlines.
           Passionate about building scalable CRM & web solutions that drive business growth. With 50+ projects delivered across international and domestic markets, I bring technical depth along with a consultative approach to every engagement.
         </p>
+        <div className="action-buttons">
+          <a 
+            href="/resume13072025.pdf" 
+            download="Resume Amal Dev Anilkumar Zoho Developer"
+            className="contact-me-btn"
+          >
+            Download Resume
+          </a>
+        </div>
       </div>
 
       <div className="projects-summary" id="projects" ref={projectsRef}>
@@ -201,16 +207,33 @@ function App() {
         </div>
       </div>
 
-      <div className="achievements-section" id="skills">
-        <h2>Skills & Achievements</h2>
-        <ul>
-          <p>Zoho CRM Certified Administrator (Dec 2023 - Dec 2025)</p>
-          <p>Premium Partner Developer Badge at OHO Solutions</p>
-          <p>Expert in Zoho Deluge, API Integrations, HTML, CSS, JavaScript</p>
-          <p>Proficient in SDLC, Agile & Waterfall Methodologies</p>
-          <p>Completed 95% of tasks within agreed timelines, exceeding client expectations</p>
-          <p>Multilingual: English, Malayalam, Hindi, Tamil</p>
-        </ul>
+      <div className={`achievements-section ${isFlipped ? 'flipped' : ''}`} id="skills">
+        <div className="flip-inner">
+          {!isFlipped ? (
+            <div className="flip-front">
+              <h2 className="fixed-heading">Skills & Achievements</h2>
+              <div className="front-content">
+                <ul>
+                  <p>Zoho CRM Certified Administrator (Dec 2023 - Dec 2025)</p>
+                  <p>Premium Partner Developer Badge at OHO Solutions</p>
+                  <p>Expert in Zoho Deluge with API Integrations & Front End Development</p>
+                  <p>SDLC, Agile & Waterfall Methodologies</p>
+                </ul>
+              </div>
+              <button onClick={() => setIsFlipped(true)} className="flip-btn fixed-btn">
+                Show Achievements
+              </button>
+            </div>
+          ) : (
+            <div className="flip-back">
+              <img src={require('./images/certificate2023.png')} alt="Certificate" className="certificate-img" />
+              <img src={require('./images/badge2023.png')} alt="Badge" className="badge-img" />
+              <button onClick={() => setIsFlipped(false)} className="flip-btn">
+                Show Skills
+              </button>
+            </div>
+          )}
+        </div>
       </div>
 
       <footer className="site-footer" id='about'>
@@ -218,7 +241,6 @@ function App() {
           <h3>Amal Dev Anilkumar</h3>
           <p>Zoho Developer | Web Developer</p>
           <p className="footer-contact">Alappuzha, Kerala, India</p>
-          <p><a href="tel:+919074617161">+91 90746 17161</a></p>
           <p><a href="mailto:amaldevanil129@gmail.com">amaldevanil129@gmail.com</a></p>
           <div className="footer-socials">
             <a href="https://www.instagram.com/amal_dv_/" aria-label="Instagram"><FaInstagram /></a>
@@ -234,9 +256,23 @@ function App() {
 
       {showTopButton && (
         <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="top-button">
-          ↑ Top
+          ↑
         </button>
       )}
+
+{showCodePopup && (
+  <div className={`code-popup-overlay ${showCodePopup ? 'show' : ''}`}>
+    <CodePopupForm onClose={() => setShowCodePopup(false)} />
+  </div>
+)}
+
+<button 
+  onClick={() => setShowCodePopup(!showCodePopup)} 
+  className="code-popup-toggle"
+>
+  {showCodePopup ? '❌' : '🔑'}
+</button>
+
       <button onClick={() => setDarkMode(!darkMode)} className="darkmode-toggle">
         {darkMode ? '☀️' : '🌙'}
       </button>
