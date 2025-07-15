@@ -1,6 +1,6 @@
 # 🚀 Amal Dev Anilkumar Portfolio
 
-Welcome to my personal portfolio website!  
+Welcome to my personal portfolio website mate!  
 This site showcases my skills, projects, and employment status, built with React and styled with custom glassmorphism UI.
 
 ## 🌟 Features
