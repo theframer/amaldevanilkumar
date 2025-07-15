@@ -7,7 +7,7 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { useInView } from 'react-intersection-observer';
 import ContactForm from './ContactForm';
-import CodePopupForm from './CodePopupForm'; // ✅ ADDED THIS
+import CodePopupForm from './CodePopupForm'; //
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -155,7 +155,7 @@ function App() {
         <div className="action-buttons">
           <a 
             href="/resume13072025.pdf" 
-            download="Resume Amal Dev Anilkumar Zoho Developer"
+            download="ResumeAmalDevAnilkumar"
             className="contact-me-btn"
           >
             Download Resume
