@@ -215,6 +215,29 @@ header ul li a.active {
   color: white;
 }
 
+.resume-button {
+  display: inline-block;
+  padding: 15px 30px;
+  background: #ffffff;
+  color: #8d1111;
+  margin-top: 20px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2em;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.resume-button {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  background: #6c0f0f;
+  color: white;
+}
+
 .action-buttons {
   margin-top: 25px;
   display: flex;
@@ -677,7 +700,7 @@ a:focus {
   transform: rotateY(180deg);
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* was center */
+  align-items: flex-start; /* fixes stacking */
   flex-wrap: wrap;
   gap: 20px;
   padding: 20px;
@@ -685,8 +708,8 @@ a:focus {
 
 .flip-back .flip-btn {
   display: block;
-  width: 100%;       /* make it full width */
-  text-align: center;/* center text */
+  width: 100%;
+  text-align: center;
   margin-top: 20px;
 }
 

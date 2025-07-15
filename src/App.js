@@ -153,13 +153,13 @@ function App() {
           Passionate about building scalable CRM & web solutions that drive business growth. With 50+ projects delivered across international and domestic markets, I bring technical depth along with a consultative approach to every engagement.
         </p>
         <div className="action-buttons">
-          <a 
-            href="/resume13072025.pdf" 
-            download="ResumeAmalDevAnilkumar"
-            className="contact-me-btn"
-          >
-            Download Resume
-          </a>
+        <a 
+  href={`${process.env.PUBLIC_URL}/resume13072025.pdf`} 
+  download="ResumeAmalDevAnilkumar"
+  className="resume-button"
+>
+  Download Resume
+</a>
         </div>
       </div>
 
