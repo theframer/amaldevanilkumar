@@ -24,7 +24,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowContact(true), 10000);
+    const timer = setTimeout(() => setShowContact(true), 15000);
     return () => clearTimeout(timer);
   }, []);
 
