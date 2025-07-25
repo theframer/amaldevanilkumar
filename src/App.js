@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import rocketImage from './images/IMG_0590.PNG';
+import rocketImage from './images/trudevAvatar.png';
 import { FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import CountUp from 'react-countup';
 import { useKeenSlider } from "keen-slider/react";
@@ -93,6 +93,7 @@ function App() {
   }, [darkMode]);
 
   const employers = [
+    { name: "Wipro", role: "WILP: Cloud Support Engineer Tainee", description: "Sep 2021 - Apr 2022", logo: "https://www.wipro.com/content/dam/wipro/social-icons/wipro_new_logo.svg", link: "https://www.wipro.com/"},
     { name: "OHO Solutions", role: "Senior Zoho Developer", description: "2023-2025", logo: "https://www.ohosolutions.com/logo%20bottom-1.png", link: "https://www.ohosolutions.com/#clients"},
     { name: "Agent Time", role: "Team Lead: Web & Zoho Development", description: "Active", logo: "https://agenttime.au/wp-content/uploads/2025/03/Invert-AT-Logo.png", link: "https://agenttime.au/"}
   ];
@@ -142,7 +143,7 @@ function App() {
             <li><a href="https://www.twitter.com/amal_dv_/" aria-label="Twitter"><FaTwitter /></a></li>
           </ul>
 
-          <p className="copyright">©2025 Amal Dev Anilkumar. All Rights Reserved.</p>
+          <p className="copyright"></p>
         </div>
       </section>
 

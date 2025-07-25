@@ -265,7 +265,7 @@ header ul li a.active {
 }
 
 .imgbox img {
-  max-width: 100%;
+  max-width: 90%;
   /* Make image responsive within its container */
   height: auto;
   /* Maintain aspect ratio */
@@ -626,7 +626,7 @@ a:focus {
   position: relative;
   width: 90%;
   max-width: 900px;
-  height: 400px;
+  height: 500px;
   margin: 50px auto;
   overflow: hidden;
 }
@@ -949,7 +949,12 @@ a:focus {
   transform: scale(0.7) rotateY(20deg);
   opacity: 0.5;
 }
-.keen-slider__slide:nth-child(2) {
+.keen-slider__slide:nth-child(2 ) {
+  transform: scale(0.7) rotateY(20deg);
+  opacity: 0.5;
+}
+
+.keen-slider__slide:nth-child(3) {
   transform: scale(0.9) rotateY(10deg);
   opacity: 1;
 }
@@ -992,7 +997,11 @@ a:focus {
 
 /* Second card description - green */
 .keen-slider__slide:nth-child(2) .emp-description {
-  color: #00bc26;
+  color: #ff0000;
+}
+
+.keen-slider__slide:nth-child(3) .emp-description {
+  color: #22ff00;
 }
 
 
