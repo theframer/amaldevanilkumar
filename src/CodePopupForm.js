@@ -13,11 +13,14 @@ function CodePopupForm({ onClose }) {
     const isValid = validCodes.includes(code.toLowerCase().trim());
 
     if (isValid) {
-      setMessage('🎉 Congratulations!');
+      setMessage('Congratulations!');
       setSuccess(true);
 
       // 🎊 Trigger bottom-corner confetti
       launchConfetti();
+    } else {
+      setMessage('Sorry, invalid code.');
+      setSuccess(false);
     }
   };
 
