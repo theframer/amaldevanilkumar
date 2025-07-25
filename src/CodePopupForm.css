@@ -99,4 +99,16 @@
       right: 20px;
     }
   }
+
+  /* Pop animation */
+@keyframes popEffect {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.pop-success {
+  animation: popEffect 0.4s ease-in-out;
+}
+
     
