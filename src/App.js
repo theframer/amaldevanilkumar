@@ -166,6 +166,27 @@ function App() {
       </div>
 
       <div className="projects-summary" id="projects" ref={projectsRef}>
+      
+        <h2>Projects Delivered</h2>
+        <div className="projects-total">
+          {projectsInView && (
+            <>
+              <span><CountUp end={50} duration={3} /></span><span>+</span>
+            </>
+          )}
+        </div>
+        <div className="projects-stats-row">
+          <div className="projects-stat-card">
+            <h3>International</h3>
+            {projectsInView && <span><CountUp end={6} duration={3} />+</span>}
+          </div>
+          <div className="projects-stat-card">
+            <h3>Domestic</h3>
+            {projectsInView && <span><CountUp end={44} duration={3} />+</span>}
+          </div>
+        </div>
+      </div>
+
       <section id="apps" className="my-apps-section">
 
 <h2>My Apps</h2>
@@ -187,7 +208,7 @@ function App() {
   </div>
 
   <a
-    href="https://theframer.github.io/any-video-downloader/"
+    href={`${process.env.PUBLIC_URL}/apps/any-video-downloader/index.html`}
     target="_blank"
     rel="noopener noreferrer"
     className="app-button"
@@ -198,25 +219,6 @@ function App() {
 </div>
 
 </section>
-        <h2>Projects Delivered</h2>
-        <div className="projects-total">
-          {projectsInView && (
-            <>
-              <span><CountUp end={50} duration={3} /></span><span>+</span>
-            </>
-          )}
-        </div>
-        <div className="projects-stats-row">
-          <div className="projects-stat-card">
-            <h3>International</h3>
-            {projectsInView && <span><CountUp end={6} duration={3} />+</span>}
-          </div>
-          <div className="projects-stat-card">
-            <h3>Domestic</h3>
-            {projectsInView && <span><CountUp end={44} duration={3} />+</span>}
-          </div>
-        </div>
-      </div>
 
       <div className="employer-carousel">
         <h2>Employment Status</h2>
