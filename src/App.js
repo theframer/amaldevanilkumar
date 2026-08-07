@@ -117,10 +117,35 @@ function App() {
             <a href="/" className="logo">trudev</a>
             <ul>
   <li><a href="/" className="active">Home</a></li>
+
   <li><a href="#skills">Skills</a></li>
+
   <li><a href="#projects">Projects</a></li>
-  <li><a href="#apps">My Apps</a></li>
+
+  <li className="apps-dropdown">
+
+    <span>My Apps ▾</span>
+
+    <ul className="dropdown-menu">
+
+      <li>
+
+        <a
+          href={`${process.env.PUBLIC_URL}/apps/any-video-downloader/index.html`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          🎬 Any Video Downloader
+        </a>
+
+      </li>
+
+    </ul>
+
+  </li>
+
   <li><a href="#about">About</a></li>
+
 </ul>
           </header>
 
@@ -186,40 +211,6 @@ function App() {
           </div>
         </div>
       </div>
-
-      <section id="apps" className="my-apps-section">
-
-<h2>My Apps</h2>
-
-<div className="app-card">
-
-  <div className="app-icon">
-    🎬
-  </div>
-
-  <div className="app-content">
-
-    <h3>Any Video Downloader</h3>
-
-    <p>
-      Download videos from supported websites using a clean browser interface.
-    </p>
-
-  </div>
-
-  <a
-    href={`${process.env.PUBLIC_URL}/apps/any-video-downloader/index.html`}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="app-button"
-  >
-    Open →
-  </a>
-
-</div>
-
-</section>
-
       <div className="employer-carousel">
         <h2>Employment Status</h2>
         <div ref={sliderRef} className="keen-slider employer-carousel-3d">
